@@ -1,12 +1,12 @@
-package org.example;
+package com.llm;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.*;
 
 import java.net.URISyntaxException;
-import org.example.exception.LlmExceptions.InvalidPromtException;
-import org.example.exception.LlmExceptions.LlmException;
+import com.llm.exception.LlmExceptions.InvalidPromtException;
+import com.llm.exception.LlmExceptions.LlmException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
