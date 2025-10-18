@@ -21,7 +21,7 @@ public class LlmClient {
   LlmClient() {
 
     endpoint = "https://models.github.ai/inference/chat/completions";
-    model = "openai/gpt-4.1";
+    model = "openai/gpt-4o";
     key = System.getenv("API_KEY");
   }
 
@@ -52,14 +52,17 @@ public class LlmClient {
     HttpClient httpClient = HttpClient.newHttpClient();
     HttpResponse<String> postResponse = httpClient.send(postRequest, HttpResponse.BodyHandlers.ofString());
 
-    JSONObject rawResponse = new JSONObject(postResponse.body());
-
-    if (rawResponse.has("error")) {
-      throw new InvalidPromtException("Invalid Prompt " + rawResponse.getJSONObject("error"));
-    }
-    JSONObject parsedJson = rawResponse.getJSONArray("choices").getJSONObject(0);
-    JSONObject messageResponse = parsedJson.getJSONObject("message");
-    String content = messageResponse.getString("content");
-    return content;
+    System.out.println(postResponse.body());
+    // JSONObject rawResponse = new JSONObject(postResponse.body());
+    //
+    // if (rawResponse.has("error")) {
+    // throw new InvalidPromtException("Invalid Prompt " +
+    // rawResponse.getJSONObject("error"));
+    // }
+    // JSONObject parsedJson = rawResponse.getJSONArray("choices").getJSONObject(0);
+    // JSONObject messageResponse = parsedJson.getJSONObject("message");
+    // String content = messageResponse.getString("content");
+    // return content;
+    return "toto";
   }
 }
