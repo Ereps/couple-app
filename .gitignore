@@ -32,3 +32,13 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+#API_key
+.api_key.txt
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
