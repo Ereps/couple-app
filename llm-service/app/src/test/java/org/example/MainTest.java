@@ -3,7 +3,7 @@
  */
 package org.example;
 
-public class App {
+public class MainTest {
   public static void main(String[] args) {
     try {
       LlmClient client = new LlmClient();
