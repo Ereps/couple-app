@@ -17,6 +17,7 @@ public class App {
     String key = System.getenv("API_KEY");
     if (key == null) {
       System.out.println("ERROR : api key not found");
+
       System.exit(1);
     }
     String endpoint = "https://models.github.ai/inference/chat/completions";
@@ -36,20 +37,17 @@ public class App {
     jsonBody.put("messages", messages);
 
     try {
-      HttpRequest postRequest =
-          HttpRequest.newBuilder()
-              .uri(new URI(endpoint))
-              .header("Authorization", "Bearer " + key)
-              .header("Content-Type", "application/json")
-              .POST(HttpRequest.BodyPublishers.ofString(jsonBody.toString()))
-              .build();
+      HttpRequest postRequest = HttpRequest.newBuilder()
+          .uri(new URI(endpoint))
+          .header("Authorization", "Bearer " + key)
+          .header("Content-Type", "application/json")
+          .POST(HttpRequest.BodyPublishers.ofString(jsonBody.toString()))
+          .build();
       HttpClient httpClient = HttpClient.newHttpClient();
-      HttpResponse<String> postResponse =
-          httpClient.send(postRequest, HttpResponse.BodyHandlers.ofString());
+      HttpResponse<String> postResponse = httpClient.send(postRequest, HttpResponse.BodyHandlers.ofString());
 
       JSONObject rawResponse = new JSONObject(postResponse.body());
-      JSONObject parsedJson =
-          rawResponse.getJSONArray("choices").getJSONObject(0);
+      JSONObject parsedJson = rawResponse.getJSONArray("choices").getJSONObject(0);
       JSONObject messageResponse = parsedJson.getJSONObject("message");
       String content = messageResponse.getString("content");
       System.out.println(content);
