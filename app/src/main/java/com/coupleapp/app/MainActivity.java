@@ -1,6 +1,7 @@
 package com.coupleapp.app;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
@@ -8,6 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import com.coupleapp.llm.*;
+
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +31,24 @@ public class MainActivity extends AppCompatActivity {
         });
   }
   public void boutonTest(View view) {
+      LlmClient client = new LlmClient(this,BuildConfig.API_KEY);
     TextView tv = findViewById(R.id.textViewMainPage);
+    try{
+        client.generateText("Bonjourrr tu vas bien ?", new LlmClient.LlmCallback(){
+
+        @Override
+        public void onSuccess(String text){
+          tv.setText(text);
+        }
+        @Override
+        public void onError(Exception e){
+          Log.d("MainActivity",e.getLocalizedMessage());
+        }
+
+      });
+    }
+    catch (Exception e){
+        Log.e("TOTO_TEST", Objects.requireNonNull(e.getLocalizedMessage()));
+    }
   }
 }

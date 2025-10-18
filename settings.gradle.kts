@@ -20,5 +20,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Couple App"
-include(":app", ":llm-service")
+include(":app")
+//include(":app", ":llm-service")
 
+include(":llm")

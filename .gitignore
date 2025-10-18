@@ -35,6 +35,7 @@ google-services.json
 
 #API_key
 .api_key.txt
+gradle.properties
 
 # Eclipse
 .project
@@ -42,3 +43,4 @@ google-services.json
 .settings/
 bin/
 
+#
