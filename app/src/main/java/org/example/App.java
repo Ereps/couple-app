@@ -3,56 +3,13 @@
  */
 package org.example;
 
-import java.net.URI;
-// import java.net.http.HttpClient;
-// import java.net.http.HttpClient.BodyPublishers;
-// import java.net.http.HttpRequest;
-// import java.net.http.HttpRequest.BodyHandlers;
-import java.net.http.*;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 public class App {
   public static void main(String[] args) {
-    String key = System.getenv("API_KEY");
-    if (key == null) {
-      System.out.println("ERROR : api key not found");
-
-      System.exit(1);
-    }
-    String endpoint = "https://models.github.ai/inference/chat/completions";
-    String model = "openai/gpt-4.1";
-
-    JSONObject message = new JSONObject();
-
-    message.put("role", "user");
-    message.put("content", "c'est un test pour une requete api");
-
-    JSONArray messages = new JSONArray();
-    messages.put(message);
-
-    JSONObject jsonBody = new JSONObject();
-
-    jsonBody.put("model", model);
-    jsonBody.put("messages", messages);
-
     try {
-      HttpRequest postRequest = HttpRequest.newBuilder()
-          .uri(new URI(endpoint))
-          .header("Authorization", "Bearer " + key)
-          .header("Content-Type", "application/json")
-          .POST(HttpRequest.BodyPublishers.ofString(jsonBody.toString()))
-          .build();
-      HttpClient httpClient = HttpClient.newHttpClient();
-      HttpResponse<String> postResponse = httpClient.send(postRequest, HttpResponse.BodyHandlers.ofString());
-
-      JSONObject rawResponse = new JSONObject(postResponse.body());
-      JSONObject parsedJson = rawResponse.getJSONArray("choices").getJSONObject(0);
-      JSONObject messageResponse = parsedJson.getJSONObject("message");
-      String content = messageResponse.getString("content");
-      System.out.println(content);
-
+      LlmClient client = new LlmClient();
+      System.out.println(client.GenerateText("Hello world"));
     } catch (Exception e) {
+      // TODO: handle exception
       e.printStackTrace();
     }
   }
