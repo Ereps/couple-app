@@ -1,4 +1,4 @@
-package com.example.coupleapp;
+package com.coupleapp.app;
 
 import android.content.Context;
 

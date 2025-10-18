@@ -1,4 +1,4 @@
-package com.example.coupleapp;
+package com.coupleapp.app;
 
 import android.os.Bundle;
 import android.view.View;
@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
         });
   }
   public void boutonTest(View view) {
-    AIClient ai_client = new AIClient(this);
     TextView tv = findViewById(R.id.textViewMainPage);
-    tv.setText(ai_client.query("bonjour"));
   }
 }

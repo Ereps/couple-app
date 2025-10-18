@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.coupleapp"
+    namespace = "com.coupleapp.app"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.coupleapp"
+        applicationId = "com.coupleapp.app"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -21,7 +21,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -41,3 +41,4 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 }
+
