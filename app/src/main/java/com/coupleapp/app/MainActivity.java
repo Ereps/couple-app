@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
       LlmClient client = new LlmClient(this,BuildConfig.API_KEY);
     TextView tv = findViewById(R.id.textViewMainPage);
     try{
-        client.generateText("Bonjourrr tu vas bien ?", new LlmClient.LlmCallback(){
+        client.generateText("Donne moi une question de couple vraiment intéressante, pas de message en plus, juste la question. Je veux que la question soit positive ou bien mene a quelque chose de positif.", new LlmClient.LlmCallback(){
 
         @Override
         public void onSuccess(String text){
