@@ -1,0 +1,20 @@
+{
+  "name": "couple-app",
+  "version": "1.0.0",
+  "description": "Node.js backend serveur for couple-app",
+  "homepage": "https://github.com/Ereps/couple-app#readme",
+  "bugs": {
+    "url": "https://github.com/Ereps/couple-app/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ereps/couple-app.git"
+  },
+  "license": "MIT",
+  "author": "Ereps",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
