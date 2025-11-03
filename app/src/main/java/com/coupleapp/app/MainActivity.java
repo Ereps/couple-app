@@ -1,6 +1,7 @@
 package com.coupleapp.app;
 
 import android.os.Bundle;
+import java.util.Date;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -9,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import com.coupleapp.llm.*;
+import com.coupleapp.http.*;
 
 import java.util.Objects;
 
@@ -31,10 +32,11 @@ public class MainActivity extends AppCompatActivity {
         });
   }
   public void boutonTest(View view) {
-      LlmClient client = new LlmClient(this,BuildConfig.API_KEY);
+      HttpClient client = new HttpClient(this);
     TextView tv = findViewById(R.id.textViewMainPage);
     try{
-        client.generateText("Donne moi une question de couple vraiment intéressante, pas de message en plus, juste la question. Je veux que la question soit positive ou bien mene a quelque chose de positif.", new LlmClient.LlmCallback(){
+        client.getQuestion(new Date(),new HttpClient.HttpCallback(){
+        // client.generateText("Donne moi une question de couple vraiment intéressante, pas de message en plus, juste la question. Je veux que la question soit positive ou bien mene a quelque chose de positif.", new HttpClient.HttpCallbac(){
 
         @Override
         public void onSuccess(String text){

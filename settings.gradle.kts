@@ -23,4 +23,3 @@ rootProject.name = "Couple App"
 include(":app")
 //include(":app", ":llm-service")
 
-include(":llm")

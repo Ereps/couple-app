@@ -1,9 +1,9 @@
-package com.coupleapp.llm;
+package com.coupleapp.http;
 
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
-
+import java.util.Date;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -32,12 +32,6 @@ public class HttpClient {
                     null,
                     response -> {
                         try {
-                            if (response.has("error")) {
-                                callback.onError(new InvalidPromptException(
-                                        "Invalid Prompt: " + response.getJSONObject("error")
-                                ));
-                                return;
-                            }
                             String question = response.getString("question");
                             // String date = response.getString("date");
                             callback.onSuccess(question);
@@ -65,7 +59,7 @@ public class HttpClient {
         }
     }
 
-    public interface LlmCallback {
+    public interface HttpCallback {
         void onSuccess(String text);
         void onError(Exception e);
     }
