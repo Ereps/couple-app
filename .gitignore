@@ -43,4 +43,6 @@ gradle.properties
 .settings/
 bin/
 
-#
+# node ignore 
+node_modules/
+.env
