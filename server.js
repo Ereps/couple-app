@@ -8,7 +8,7 @@ let date_message = new Date();
 // async callback => await the response from generate_text
 const server = http.createServer(async (req, res) => {
   res.setHeader("Content-type", "application/json");
-  res.write("totot atatat")
+  res.write(JSON.stringify("totot atatat"))
 
   if (req.url === "/api" && req.method === "GET") {
     // check for the next day, if it's another month...
@@ -18,7 +18,7 @@ const server = http.createServer(async (req, res) => {
         today_question = await generate_question("Make a joke");
         date_message = new Date();
       }
-      res.write(today_question)
+      res.write(JSON.stringify(today_question))
       console.log(date_message.toDateString());
     }
     catch (err) {
