@@ -14,54 +14,53 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class HttpClient {
-    private static String endpoint = "localhost:8000/api";
-    private Context context;
+  private static String endpoint = "https://couple-app-la6c.onrender.com/api";
+  private Context context;
 
-    public HttpClient(Context context) {
-        this.context = context;
-    }
+  public HttpClient(Context context) {
+    this.context = context;
+  }
 
-    public void getQuestion(Date date, HttpCallback callback) {
+  public void getQuestion(Date date, HttpCallback callback) {
 
-        try {
-            RequestQueue queue = Volley.newRequestQueue(context);
+    try {
+      RequestQueue queue = Volley.newRequestQueue(context);
 
-            JsonObjectRequest request = new JsonObjectRequest(
-                    Request.Method.GET,
-                    endpoint,
-                    null,
-                    response -> {
-                        try {
-                            String question = response.getString("question");
-                            // String date = response.getString("date");
-                            callback.onSuccess(question);
-                        } catch (Exception e) {
-                            callback.onError(e);
-                        }
-                    },
-                    error -> {
-                        Log.e("HttpClient", "getQuestion error" + error.getLocalizedMessage());
-                        callback.onError(error);
-                    }
-            ) {
-                @Override
-                public java.util.Map<String, String> getHeaders() {
-                    java.util.Map<String, String> headers = new java.util.HashMap<>();
-                    headers.put("Content-Type", "application/json");
-                    return headers;
-                }
-            };
+      JsonObjectRequest request = new JsonObjectRequest(
+          Request.Method.GET,
+          endpoint,
+          null,
+          response -> {
+            try {
+              String question = response.getString("question");
+              callback.onSuccess(question);
+            } catch (Exception e) {
+              callback.onError(e);
+            }
+          },
+          error -> {
+            Log.e("HttpClient", "getQuestion error : " + error.getLocalizedMessage());
+            callback.onError(error);
+          }) {
 
-            queue.add(request);
-
-        } catch (Exception e) {
-            callback.onError(e);
+        @Override
+        public java.util.Map<String, String> getHeaders() {
+          java.util.Map<String, String> headers = new java.util.HashMap<>();
+          headers.put("Content-Type", "application/json");
+          return headers;
         }
-    }
+      };
 
-    public interface HttpCallback {
-        void onSuccess(String text);
-        void onError(Exception e);
+      queue.add(request);
+
+    } catch (Exception e) {
+      callback.onError(e);
     }
+  }
+
+  public interface HttpCallback {
+    void onSuccess(String text);
+
+    void onError(Exception e);
+  }
 }
-
