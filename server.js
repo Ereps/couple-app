@@ -1,7 +1,7 @@
 import http from "http";
 import { generate_question } from "./generation.js";
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 let today_question = "";
 let date_message = new Date();
 
@@ -15,7 +15,6 @@ const server = http.createServer(async (req, res) => {
 
       if (today_question === "" || new Date().getDay() < date_message.getDay()) {
         today_question = await generate_question("Make a joke");
-        console.log('toto')
         date_message = new Date();
       }
       res.write(today_question)
