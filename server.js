@@ -17,7 +17,10 @@ const server = http.createServer(async (req, res) => {
         today_question = await generate_question("Make a joke");
         date_message = new Date();
       }
-      res.write(JSON.stringify(today_question))
+      let response = {
+        "question": JSON.stringify(today_question)
+      }
+      res.write(JSON.stringify(response))
       console.log(date_message.toDateString());
     }
     catch (err) {
